@@ -79,6 +79,11 @@ public String error(Model model)
 	return "redirect:/viewemp";  
 }
 
+@RequestMapping(value="/login", method= RequestMethod.GET)
+
+public String showlogin(Model model) {
+	return "login";
+}
 
 }
 
