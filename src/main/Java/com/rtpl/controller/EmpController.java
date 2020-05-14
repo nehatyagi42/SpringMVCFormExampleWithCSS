@@ -1,17 +1,25 @@
 package com.rtpl.controller;
 
 import java.util.List;
+import javax.validation.Valid;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.rtpl.beans.Employee;
 import com.rtpl.dao.EmpDao;
+
 
 @Controller
 public class EmpController {
@@ -33,12 +41,21 @@ public String showform(Model model){
  *  because default request is GET*/   
 
  @RequestMapping( value="/save",method=RequestMethod.POST)
- 
- public String save(@ModelAttribute("emp")Employee emp) {
-	 dao.save(emp);
+ public String save(@ModelAttribute("employee") Employee employee, BindingResult result) {
+	 
+	 dao.save(employee);
 	 return "redirect:/viewemp";//will redirect to viewemp request mapping    
  }
- /* It provides list of employees in model object */ 
+ 
+ /*@RequestMapping(value="/save", method=RequestMethod.GET)
+ public String showForm(Model model) {
+     model.addAttribute("save",new Employee());
+     return "redirect:/viewemp";
+    
+}*/
+ 
+
+/* It provides list of employees in model object */ 
  
  @RequestMapping("/viewemp")
  public String viewemp(Model model) {
@@ -56,8 +73,8 @@ public String showform(Model model){
  }    
  /* It updates model object. */    
  @RequestMapping(value="/editsave", method = RequestMethod.POST)    
- public String editsave(@ModelAttribute("emp") Employee emp){    
-     dao.update(emp);    
+ public String editsave(@Valid @ModelAttribute Employee employee, BindingResult result, ModelMap model){    
+     dao.update(employee);    
      return "redirect:/viewemp";    
  }    
 /* It deletes record for the given id in URL and redirects to /viewemp */    
@@ -79,11 +96,17 @@ public String error(Model model)
 	return "redirect:/viewemp";  
 }
 
-@RequestMapping(value="/login", method= RequestMethod.GET)
 
-public String showlogin(Model model) {
+
+
+@RequestMapping(value = "/", method = RequestMethod.GET)
+public String login(ModelMap model) {
 	return "login";
 }
+
+
+
+
 
 }
 

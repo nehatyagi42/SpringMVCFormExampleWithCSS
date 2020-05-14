@@ -1,7 +1,8 @@
 package com.rtpl.beans;
 
 public class Employee {
-
+private String email;
+private String password;
 	private String name;
 	private int id;
 	private String designation;
@@ -33,6 +34,18 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [name=" + name + ", id=" + id + ", designation=" + designation + ", salary=" + salary + "]";
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

@@ -41,7 +41,8 @@
 </nav>
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="${resource}/js/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
+   <%--  <script src="${resource}/js/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script> --%>
+    <script src="${resource}/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="${resource}/js/popper.min.js" crossorigin="anonymous"></script>
     <script src="${resource}/js/bootstrap.min.js" crossorigin="anonymous"></script>
 

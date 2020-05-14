@@ -29,11 +29,11 @@
 
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
-                <form:form id="loginForm"  class="form-horizontal" action="viewemp" modelAttribute="user">
+                <form:form id="loginForm"  class="form-horizontal" action="login.do" modelAttribute="user">
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Username</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" name="userName" />
+                            <input type="text" class="form-control" name="email" />
                         </div>
                     </div>
 
@@ -62,37 +62,4 @@
 </html>
 
 
-<script>
-$(document).ready(function() {
-// 	alert("hi" );
-    $('#loginForm').validate({
-        framework: 'bootstrap',
-        excluded: ':disabled',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            username: {
-                validators: {
-                    notEmpty: {
-                        message: 'The username is required'
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: 'The password is required'
-                    }
-                }
-            }
-        }
-    });
-});
-
-</script>
-
- 
 

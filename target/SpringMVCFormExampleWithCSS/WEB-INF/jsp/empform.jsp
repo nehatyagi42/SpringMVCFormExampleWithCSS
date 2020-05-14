@@ -4,7 +4,7 @@
 <jsp:include page="header.jsp"/>
 
 <h1>Add New Employee</h1>
-<form:form method="post" action="save">
+<form:form method="post" action="save" commandName="save">
 <table>
 <tr>
 <td>Name: </td>

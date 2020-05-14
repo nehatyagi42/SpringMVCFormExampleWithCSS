@@ -15,19 +15,17 @@
   <td id="salary-${loop.index}">${emp.salary}</td>
   <td id="designation-${loop.index}">${emp.designation}</td>
     
-  <%--  <td>${emp.id}</td>
-   <td>${emp.name}</td>  
-   <td>${emp.salary}</td>  
-   <td>${emp.designation}</td>   --%>
+
    
-   
-  <%--   <td><a href="<c:url value='editemp/${emp.id}' />">Edit</a></td>
-	<td><a href="<c:url value='deleteemp/${emp.id}' />">Delete</a></td> --%>
-   
-  <%--  <td><a href="javascript: editemp(${emp.id},${loop.index})">Edit</a></td>
+ 
+ <%--    <td><a href="<c:url value='editemp/${emp.id}' />"data-toggle="modal" data-target="#editModal">Edit</a></td>
 	<td><a href="<c:url value='deleteemp/${emp.id}' />">Delete</a></td>  --%>
- <td>  <a href="javascript: editemp(${emp.id},${loop.index})" button class="btn btn-primary btn-sm" data-target="#editModal">Edit</a>
-     </td>
+   
+  <td><a href="javascript:editemp(${emp.id},${loop.index})">Edit</a></td>
+	<td><a href="<c:url value='deleteemp/${emp.id}' />">Delete</a></td> 
+	
+ <%--   <a href="javascript: editemp(${emp.id},${loop.index})" button class="btn btn-primary btn-sm" data-target="#editModal">Edit</a> --%>
+     
 
    </tr> 
 
@@ -49,13 +47,18 @@
                 <h5 class="modal-title">Add New</h5>
             </div>
 
+
+			<c:url var="addAction" value="/save"></c:url>
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
-                <form:form id="viewemp"  class="form-horizontal" action="save" modelAttribute="user">
+                <form:form id="empform"  class="form-horizontal" action="${addAction}" modelAttribute="employee" >
+                	
+                <%--  <form:input path="id" id="id" readonly="true" size="8"	type="hidden" /> --%>
+                	  
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Name: </label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" name="name" />
+                            <input type="text" class="form-control" name="name"/>
                         </div>
                     </div>
 
@@ -101,38 +104,27 @@
 
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
-                <form:form id="editemployee" class="form-horizontal" action="editsave" modelAttribute="user">
-                
-                
-                
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">id</label>
-                        <div class="col-xs-5">
-                            <input type="hidden" class="form-control" name="id" />
-                        </div>
-                    </div>
-                
-                
-                
+                 <form:form id="editemployee" class="form-horizontal" action="editsave" modelAttribute="employee" >
+                 <input type="hidden" id="iddefine" name="id" >
                 
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Name: </label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" name="name" />
+                            <input type="text" class="form-control" name="name" id="empdefine1"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Salary</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" name="salary" />
+                            <input type="text" class="form-control" name="salary" id="empdefine2" />
                         </div>
                     </div>
 
                      <div class="form-group">
                         <label class="col-xs-3 control-label">Designation</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" name="designation" />
+                            <input type="text" class="form-control" name="designation" id="empdefine3" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -141,7 +133,7 @@
                            
                         </div>
                     </div>
-                </form:form>
+                </form:form> 
             </div>
         </div>
     </div>
@@ -150,17 +142,46 @@
 
    function editemp(id, index) {
 
-			// 			alert("helo " +index +" id is "+"name-"+index);
+				//alert("helo " +index +" id is "+"name-"+index);
+				
+			
 			var name = document.getElementById('name-' + index).innerHTML;
 			var salary = document.getElementById('salary-' + index).innerHTML;
 			var designation = document.getElementById('designation-' + index).innerHTML;
 			
-			var employee = {
+			var emp = {
 				"id" : id,
 				"name" : name,
 				"salary" : salary,
 				"designation" : designation,
 			};
 			
-			}
+			
+			setEditModal(emp); 
+	}
+   
+ 
+
+	   
+   function setEditModal(emp) {
+		//alert(user.name);
+ 		$("#editModal").modal();
+			
+		
+ 
+		document.getElementById('iddefine').value = emp.id;
+		document.getElementById('empdefine1').value = emp.name;
+		document.getElementById('empdefine2').value = emp.salary;
+		document.getElementById('empdefine3').value = emp.designation;
+		
+		$('#editModal').on('submit', function(emp) {
+		    $('#').modal({
+		        show: 'false'
+		    });});
+   }
    </script>
+   
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+   
