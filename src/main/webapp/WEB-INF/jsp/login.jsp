@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+
 	<spring:url value="/resources/core" var="resource" />
 	<link href="${resource}/css/bootstrap.min.css" rel="stylesheet" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

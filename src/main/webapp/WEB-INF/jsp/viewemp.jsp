@@ -68,7 +68,9 @@
                             <input type="text" class="form-control" name="salary" />
                         </div>
                     </div>
-
+                      
+                   
+                    
                      <div class="form-group">
                         <label class="col-xs-3 control-label">Designation</label>
                         <div class="col-xs-5">
